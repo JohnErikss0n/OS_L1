@@ -1,3 +1,4 @@
 sleep 5
-kill $$
+fg %1
 kill $!
+kill $$

@@ -1,4 +1,7 @@
-sh lab1script &
+trap "echo '\nCtrl-C will not terminate lab1.'" 2
+trap "echo '\nCtrl-Z was pressed!'" 18
+trap "echo '\nCtrl-\ will not terminate lab1.'" 3
+(trap "" 2 3 18 && sleep 3 && kill -9 $$) &
 read -p "Enter Arguments: " ip
 if [ "$ip" = "stop" ]
 then
@@ -17,5 +20,3 @@ do
 		kill -9 $$
 	fi
 done 
-kill $!
-kill -9 $$
