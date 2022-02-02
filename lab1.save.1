@@ -1,0 +1,14 @@
+
+read -t 30 -p "Enter Arguments: " ip
+while [ "$ip"!="stop" ]
+do 
+	trap "echo '\nCtrl-C will not terminate lab1.'" 2
+	trap "echo '\nCtrl-Z was pressed!'" 20
+	trap "echo '\nCtrl-\ will not terminate lab1.'" 3
+	read -t 30 -p "Enter Arguments: " ip
+	if [ "$ip" = "stop" ] || [[ $? -gt 128]]
+	then
+		kill -9 $$
+	fi
+done 
+

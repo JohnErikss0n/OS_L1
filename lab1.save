@@ -1,21 +1,13 @@
-sh lab1script &
 read -p "Enter Arguments: " ip
-if [ "$ip" = "stop" ]
-then
-	kill $!
-	kill -9 $$
-fi
-while [ "$ip" != "stop" ]
+while [ "$ip"!="stop" ]
 do 
 	trap "echo '\nCtrl-C will not terminate lab1.'" 2
 	trap "echo '\nCtrl-Z was pressed!'" 20
 	trap "echo '\nCtrl-\ will not terminate lab1.'" 3
-	read -p "Enter Arguments: " ip
+	read -p -t 30 "Enter Arguments: " ip
 	if [ "$ip" = "stop" ]
 	then
-		kill $!
 		kill -9 $$
 	fi
 done 
-kill $!
-kill -9 $$
+
